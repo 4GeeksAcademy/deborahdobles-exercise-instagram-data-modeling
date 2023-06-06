@@ -28,43 +28,27 @@ class Post(Base):
      url = Column (String(250), nullable=False)
      user_id = Column(Integer, ForeignKey('user.id'))
      post_id=Column(ForeignKey('post.id'))
+     location = Column(String(100))
+     description = Column (String(250))
+     likes = Column(Integer)
+     comments = Column (String(250))
 
 class Media(Base):
      __tablename__ = 'media'
      id = Column(Integer, primary_key=True)
-     user_id = Column(Integer, ForeignKey('user.id'))
      post_id=Column(ForeignKey('post.id'))
 
 class Favorite(Base):
-    __tablename__ = 'Add to favorite'
+    __tablename__ = 'Favorite'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
+    post_img = Column(Integer, ForeignKey('post.id'))   
+
+class Commment (Base):
+    __tablename__ = 'Comment'
+    id = Column(Integer, primary_key=True)
     post_id = Column(Integer, ForeignKey('post.id'))   
-
-class location(Base):
-    __tablename__ = 'location'
-    id = Column(Integer, primary_key=True)
-    post_id=Column(ForeignKey('post.id'))
-
-class description(Base):
-    __tablename__ = 'description'
-    id = Column(Integer, primary_key=True)
-    post_id=Column(ForeignKey('post.id')) 
-
-class likes(Base):
-    __tablename__ = 'likes'
-    id = Column(Integer, primary_key=True)
-    post_id=Column(ForeignKey('post.id'))
-    followers_id = Column(Integer, ForeignKey('followers.id'))  
-    user_id = Column(Integer, ForeignKey('user.id'))  
-
-class comments(Base):
-    __tablename__ = 'comments'
-    id = Column(Integer, primary_key=True)
-    post_id=Column(ForeignKey('post.id'))
-    followers_id = Column(Integer, ForeignKey('followers.id')) 
-    comment_text = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    author_id = Column(Integer, ForeignKey('user.id'))
 
 def to_dict(self):
         return {}
