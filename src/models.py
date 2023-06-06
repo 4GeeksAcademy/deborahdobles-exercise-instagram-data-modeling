@@ -27,7 +27,6 @@ class Post(Base):
      id = Column(Integer, primary_key=True)
      url = Column (String(250), nullable=False)
      user_id = Column(Integer, ForeignKey('user.id'))
-     post_id=Column(ForeignKey('post.id'))
      location = Column(String(100))
      description = Column (String(250))
      likes = Column(Integer)
